@@ -1,0 +1,12 @@
+<h1 class="text-center mt-4">Articles</h1>
+<div class="container">
+	<div class="d-flex justify-content-center mt-5">
+		<%= will_paginate %>
+	</div>
+</div>
+<%= render 'article', obj: @articles %>
+<div class="container">
+	<div class="d-flex justify-content-center">
+		<%= will_paginate %>
+	</div>
+</div>

@@ -1,0 +1,77 @@
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+  <strong><%= link_to "ALPHA BLOG", root_path, class: "navbar-brand", id: "logo" %></strong>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <% if logged_in? %>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Articles
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <%= link_to "View all articles", articles_path, class: "dropdown-item" %>
+          <%= link_to "Create article", new_article_path, class: "dropdown-item" %>         
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "Articles", articles_path, class: "nav-link" %>
+        </li>
+      <% end %> 
+      <li class="nav-item">        
+        <%= link_to "Bloggers", users_path, class: "nav-link" %>
+      </li>
+      <ul class="navbar-nav form-inline my-2 my-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Categories
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <% if logged_in? and current_user.admin? %>              
+              <%= link_to "Create category", new_category_path, class: "dropdown-item" %>
+              <div class="dropdown-divider"></div>  
+            <% end %>
+            <%= link_to "All categories", categories_path, class: "dropdown-item" %>
+            <% Category.all.each do |category| %>
+              <%= link_to "#{category.name}", category_path(category), class: "dropdown-item" %>
+            <% end %>      
+          </div>
+        </li>
+      </ul>
+    </ul>
+    <% if logged_in? %>
+      <ul class="navbar-nav form-inline my-2 my-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= current_user.username %> <%= " (Admin)" if current_user.admin? %>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to "My Articles", user_path(current_user), class: "dropdown-item" %>
+            <%= link_to "Edit Profile", edit_user_path(current_user), class: "dropdown-item" %>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <%= link_to "Log out", logout_path, class: "dropdown-item" %>
+          </div>
+        </li>
+      </ul>
+    <% else %>
+      <ul class="navbar-nav form-inline my-2 my-lg-0">
+        <li class="nav-item dropdown">
+          <%= link_to "Log in", login_path, class: " nav-link" %>    
+        </li>
+         <li class="nav-item dropdown"> 
+          <%= link_to "Sign up", signup_path, class: "nav-link" %> 
+        </li>
+      </ul>
+    <% end %>
+    <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>

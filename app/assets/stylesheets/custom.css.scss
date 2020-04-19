@@ -1,0 +1,52 @@
+@import "bootstrap";
+
+#home-container{
+	margin-top: 25px
+}
+
+.jumbotron{
+	background-image: asset-url('typewriter.jpg');
+	backgroud-position: center center;
+	backgroud-repeat: no-repeat;
+	background-size: cover;
+	height: 570px;
+
+}
+
+
+html,
+body {
+  height: 100%;
+}
+
+#page-content {
+  flex: 1 0 auto;
+ 
+}
+
+#sticky-footer {
+  flex-shrink: none;
+}
+
+.listing{
+	list-style: none;
+	padding-left: 0
+
+}
+
+
+ul.ks-cboxtags {
+    list-style: none;
+    padding: 20px;
+}
+ul.ks-cboxtags li{
+  display: inline;
+  color: white;
+  margin-right: 10px;
+  
+}
+
+.category{
+	color: white !important
+
+}

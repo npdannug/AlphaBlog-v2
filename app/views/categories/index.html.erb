@@ -1,0 +1,33 @@
+<h1 class="text-center mt-4">Categories</h1>
+<div class="container">
+	<div class="d-flex justify-content-center mt-5">
+		<%= will_paginate %>
+	</div>
+</div>
+<div align="center">
+	<% @categories.each do |category| %>
+		<ul class="listing">
+			<div class="row justify-content-md-center">
+				<div class="card col-md-3 col-md-offset-4">
+					<div class="card-body">
+						<li class="card-title">
+							<strong>
+								<%= link_to "#{category.name}", category_path(category), class: "btn btn-outline-success" %>		
+							</strong>
+							<div>
+								<small>
+									<%= pluralize(category.articles.count, "article")%>
+								</small>
+							</div>
+						</li>											
+					</div>
+				</div>
+			</div>
+		</ul>
+	<%end%>
+</div>
+<div class="container">
+	<div class="d-flex justify-content-center mt-5">
+		<%= will_paginate %>
+	</div>
+</div>

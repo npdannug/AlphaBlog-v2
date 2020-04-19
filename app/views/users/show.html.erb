@@ -1,0 +1,35 @@
+<% if @user.articles.count == 0 %>
+	<div class="container">
+		<div class="jumbotron text-white">
+		  <h1 class="display-4">Hello, <%= @user.username %>!</h1>
+		  <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis ullamcorper neque. Suspendisse ac viverra nulla. Praesent eleifend est nec pulvinar vulputate. Curabitur dui est, aliquam sed nunc at, rutrum convallis lacus. Aenean magna purus, ultrices sit amet nisi eget, sodales sagittis leo. Fusce felis odio, cursus eget suscipit quis, dignissim quis elit. Pellentesque venenatis nunc non finibus ultricies. Nullam id lacinia ex, ac pulvinar dui.</p>
+		  <hr class="my-4">
+		  <p>Get started by creating your first article.</p>
+		  <p class="lead">
+		    <%= link_to "Create article", new_article_path, class: "btn btn-primary btn-lg" %>
+		  </p>
+		</div>
+	</div>
+<% else %>
+	<h1 class="text-center mt-4">Welcome to <%= @user.username %>'s page.</h1>
+
+	<div class="container">
+		<div class="row justify-content-center">
+			<%= gravatar_for @user %>
+		</div>
+	</div>
+	<h4 align="center"><%= @user.username %>'s articles </h4>
+	<div class="container">
+		<div class="d-flex justify-content-center mt-5">
+			<%= will_paginate @user_articles %>
+		</div>
+	</div>
+
+	<%= render 'articles/article', obj: @user.articles  %>
+
+	<div class="container">
+		<div class="d-flex justify-content-center mt-5">
+			<%= will_paginate @user_articles %>
+		</div>
+	</div>
+<% end %>
